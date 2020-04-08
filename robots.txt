@@ -1,0 +1,6 @@
+#by：ptowin.com
+User-agent: *
+Disallow: /down
+Disallow: /js/
+Disallow: /link
+Disallow: /web
