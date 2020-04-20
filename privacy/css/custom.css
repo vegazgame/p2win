@@ -1,0 +1,15 @@
+.footer-text {
+    margin-top: 0px;
+    margin-bottom: 0px;
+    float: none;
+    font-family:Microsoft YaHei;
+    color: #969799;
+    font-size: 14px;
+    font-weight: 100;
+    text-align: center;
+    text-transform: none;
+}
+
+.p {
+    word-break: break-all;
+}
