@@ -38,7 +38,7 @@
         <img src="./static/text01.png" alt="text" class="text">
     </div>
     <!-- 下载链接写到下面的 a 元素的 href 里面 -->
-    <a href="https://ad.toutiao.com/advertiser_package/dl/af64902f_1650794091475976_1579161163363" class="download download-android"
+    <a href="http://ptowin.com/download/funnyclick-beta-release.apk" class="download download-android"
         id="btn-android-download">
         <img src="../click_pop/static/download_android.png" alt="download">
     </a>
@@ -67,8 +67,8 @@
 
         $(document).on('click', '#btn-android-download', function (e) {
             e.preventDefault();
-            showToast('应用正在上架中，敬请期待……', 2000);
-            //var url = $(this).attr('href');
+            //showToast('应用正在上架中，敬请期待……', 2000);
+            var url = $(this).attr('href');
             window.open(url, '_blank');
         });
 
