@@ -213,7 +213,16 @@ body {
     left: 50%;
     transform: translate(-20%, -100%);
 }
-
+.active .detail {
+    top: 0%;
+    left: 60%;
+    transform: translate(150%, 0%);
+}
+.active .help {
+    top: 0%;
+    left: 70%;
+    transform: translate(150%, 0%);
+}
 .records-code{
     font-size: 0.24rem;
     position: absolute;
