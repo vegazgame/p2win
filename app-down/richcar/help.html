@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="css/index.css">
+    <link rel="icon" href="./static/logo.png" type="image/png" sizes="16x16">
+    <style>
+        #help-container {
+            font-size: 0.3rem;
+            display: flex;
+            align-items: flex-start;
+            justify-content: flex-start;
+            padding: 1rem;
+            padding-left: 0;
+        }
+        .left-side {
+            padding: 0.3rem;
+            margin-top: 1rem;
+        }
+        .left-side .cate-title {
+            color: #ffcd00;
+        }
+        .left-side li, .left-side p {
+            color: #5a4936;
+            margin-bottom: 0.2rem;
+            cursor: pointer;
+        }
+        .left-side li {
+            padding-left: 0.6rem;
+            width: 3.3rem;
+        }
+        .left-side li.active {
+            color: blue;
+        }
+        .right-side {
+            margin-top: 0.6rem;
+            margin-left: 0.5rem;
+            color: #5a4936;
+            line-height: 1.4;
+        }
+        .right-side .title {
+            font-size: 0.6rem;
+            margin-bottom: 0.8rem;
+        }
+    </style>
+    <title>天天农家乐</title>
+    <script src="js/jquery.min.js"></script>
+    <script src="js/vue.js"></script>
+    <script type="text/javascript">
+        var docEl = document.documentElement;
+        //当设备的方向变化（设备横向持或纵向持）此事件被触发。绑定此事件时，
+        //注意现在当浏览器不支持orientationChange事件的时候我们绑定了resize 事件。
+        //总来的来就是监听当然窗口的变化，一旦有变化就需要重新设置根字体的值
+        var resizeEvt = 'resize',
+            recalc = function () {
+                //设置根字体大小
+                let maxWidth = 1920;
+                let cw = docEl.clientWidth > maxWidth ? maxWidth : docEl.clientWidth;
+                docEl.style.fontSize = 10 * (cw / 192) + 'px';
+            };
+
+        //绑定浏览器缩放与加载时间
+        window.addEventListener(resizeEvt, recalc, false);
+        document.addEventListener('DOMContentLoaded', recalc, false);
+        window.addEventListener('load', function () {
+            docEl.setAttribute("class", "active");
+        }, false);
+    </script>
+</head>
+
+<body>
+    <div id="help-container">
+        <div class="left-side">
+            <ul v-for="(cate, cateIndex) in category" :key="cateIndex">
+                <p class="cate-title">{{ cate.title }}</p>
+                <li
+                    v-for="(config, index) in cate.configs"
+                    :key="index"
+                    :class="[activeConfig.q === config.q ? 'active' : '']"
+                    @click="handleQuestionClick(config)"
+                >
+                    {{ config.q }}
+                </li>
+            </ul>
+        </div>
+        <div class="right-side">
+            <p class="title">{{ activeConfig.q }}</p>
+            <div class="anwser">{{ activeConfig.a }}</div>
+        </div>
+    </div>
+</body>
+<script>
+    new Vue({
+        el: '#help-container',
+        data: {
+            category: [
+                {
+                    title: '功能相关',
+                    configs: [
+                        {
+                            q: '如何绑定微信？',
+                            a: '您好，请在【我的】界面点击“绑定微信号”，按提示进行绑定即可。'
+                        },
+                        {
+                            q: '为什么经常没有广告？',
+                            a: '您好，由于网络加载速度的原因，会导致此问题产生，请切换到网络环境好的情况下再次尝试。'
+                        },
+                        {
+                            q: '其他功能异常',
+                            a: '您好，抱歉给您的使用带来不便，请您将出现异常的地方截图反馈给人工客服。'
+                        }
+                    ]
+                },
+                {
+                    title: '金币相关',
+                    configs: [
+                        {
+                            q: '如何查看金币明细？',
+                            a: '您好，感谢您的使用。您可以在【我的】界面，点击“当前金币”查看您三天内的金币记录。'
+                        },
+                        {
+                            q: '金币如何兑换成现金？',
+                            a: '您好，您所得金币都会自动兑换成现金，您可以在【赚钱】界面以及【我的】界面查看。'
+                        },
+                        {
+                            q: '金币奖励太少？',
+                            a: '您好，感谢您的使用。豪车世界是一款养成游戏，金币奖励是为了帮助用户更有效地养成习惯。如果您想获得更多金币，建议您积极参与更多的任务与活动。'
+                        },
+                        {
+                            q: '为什么我的金币没有了？',
+                            a: '您好，如果您连续超过14个自然日没有登录，您的金币账户将被清零。具体解释见用户协议。'
+                        }
+                    ]
+                },
+                {
+                    title: '联系方式',
+                    configs: [
+                        {
+                            q: '联系方式',
+                            a: '邮箱：chanpinkefu@163.com'
+                        }
+                    ]
+                }
+            ],
+            activeConfig: {
+                q: '',
+                a: ''
+            }
+        },
+        methods: {
+            handleQuestionClick(config) {
+                this.activeConfig = config;
+            }
+        },
+        mounted() {
+            this.handleQuestionClick(this.category[0].configs[0])
+        }
+
+    })
+</script>
+</html>

@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="css/index.css">
+    <link rel="icon" href="./static/logo.png" type="image/png" sizes="16x16">
+    <title>天天农家乐</title>
+    <style>
+        .x-logo {
+            position: absolute;
+            left: 43%;
+            top: 34%;
+            width: 40%;
+            height: 2rem;
+            display: flex;
+            align-items: flex-start;
+            justify-content: flex-start;
+        }
+        .x-logo .left {
+            margin-right: 0.5rem;
+            height: 100%;
+        }
+        .x-logo .right {
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+            justify-content: center;
+        }
+        .x-logo .logo {
+            height: 2rem;
+            border-radius: 0.2rem;
+        }
+        .x-logo .text {
+            height: 1.6rem;
+        }
+        .x-logo .text.small {
+            height: 0.3rem;
+            margin-top: 0.2rem;
+        }
+        .btns {
+            position: fixed;
+            top: 0rem;
+            height: 0.6rem;
+            right: 5%;
+        }
+        .x-logo .btn {
+            height: 100%;
+        }
+        .right a {
+            height: 0.9rem;
+            display: inline-block;
+        }
+    </style>
+    <script src="js/jquery.min.js"></script>
+    <script type="text/javascript">
+        var docEl = document.documentElement;
+        //当设备的方向变化（设备横向持或纵向持）此事件被触发。绑定此事件时，
+        //注意现在当浏览器不支持orientationChange事件的时候我们绑定了resize 事件。
+        //总来的来就是监听当然窗口的变化，一旦有变化就需要重新设置根字体的值
+        var resizeEvt = 'resize',
+            recalc = function () {
+                //设置根字体大小
+                let maxWidth = 1920;
+                let cw = docEl.clientWidth > maxWidth ? maxWidth : docEl.clientWidth;
+                docEl.style.fontSize = 10 * (cw / 192) + 'px';
+            };
+
+        //绑定浏览器缩放与加载时间
+        window.addEventListener(resizeEvt, recalc, false);
+        document.addEventListener('DOMContentLoaded', recalc, false);
+        window.addEventListener('load', function () {
+            docEl.setAttribute("class", "active");
+        }, false);
+    </script>
+</head>
+
+<body>
+    <img src="./static/phone2.png" alt="phone" class="phone"  style="position:absolute; left:100px; " >
+    
+    <div class="x-logo">
+        <div class="left">
+            <img src="./static/logo.png" class="logo" alt="logo">
+        </div>
+        <div class="right">
+            <img src="./static/text.png" class="text" alt="text">
+            
+        </div>
+    </div>
+
+<a href="detail.html"
+    class="download detail">
+        <img src="./static/btn_detail.png" >
+    </a>
+<a href="help.html"
+    class="download help">
+        <img src="./static/btn_help.png">
+    </a>
+
+    <!-- 下载链接写到下面的 a 元素的 href 里面 -->
+    <a href="apk/D541_release_mobrainsdk_v1.0.5.apk"
+    class="download download-android">
+        <img src="./static/download_android.png" alt="download">
+    </a>
+
+    <a href=""
+    class="download download-ios"
+        id="btn-ios-download">
+        <img src="./static/download_ios.png" alt="download">
+    </a>
+
+    <p class="records-code">
+        版权所有 南京魔度互娱信息技术有限公司 | <a href="http://beian.miit.gov.cn/" style="color:blue">苏ICP备2021004529号-1</a>
+    </p>
+
+    <script type="text/javascript">
+        function showToast(msg, duration) {
+            duration = isNaN(duration) ? 3000 : duration;
+            var m = document.createElement('div');
+            m.innerHTML = msg;
+            m.style.cssText = "max-width:60%;min-width: 150px;padding:0 14px;height: 40px;color: rgb(255, 255, 255);line-height: 40px;text-align: center;border-radius: 4px;position: fixed;top: 50%;left: 50%;transform: translate(-50%, -50%);z-index: 999999;background: rgba(0, 0, 0,.7);font-size: 16px;";
+            document.body.appendChild(m);
+            setTimeout(function () {
+                var d = 0.5;
+                m.style.webkitTransition = '-webkit-transform ' + d + 's ease-in, opacity ' + d + 's ease-in';
+                m.style.opacity = '0';
+                setTimeout(function () { document.body.removeChild(m) }, d * 1000);
+            }, duration);
+        }
+
+        $(document).on('click', '#btn-android-download', function (e) {
+            e.preventDefault();
+            showToast('应用正在上架中，敬请期待……', 2000);
+            //var url = $(this).attr('href');
+            //window.open(url, '_blank');
+        });
+
+        $(document).on('click', '#btn-ios-download', function (e) {
+            e.preventDefault();
+            showToast('应用正在上架中，敬请期待……', 2000);
+            // var url = $(this).attr('href');
+            // window.open(url, '_blank');
+        });
+    </script>
+</body>
+</html>

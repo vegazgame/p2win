@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8" />
+        <title>爱上消消消</title>
+    </head>
+    <script language="javascript" type="text/javascript">
+        window.onload = function() {
+            if (navigator.userAgent.match(/(iPhone|iPod|iPad);?/i)) {
+                var loadDateTime = new Date();
+                window.setTimeout(function() {
+                    var timeOutDateTime = new Date();
+                    if (timeOutDateTime - loadDateTime < 3500) {
+                        window.location =
+                            "https://apps.apple.com/cn/app/%E7%88%B1%E4%B8%8A%E6%B6%88%E6%B6%88%E6%B6%88/id1497477502";
+                    } else {
+                        window.close();
+                    }
+                }, 25);
+                window.location = "clearstar://";
+            } else if (navigator.userAgent.match(/android/i)) {
+                window.location.href = "openapp://clearstar:8999/abc";
+                window.setTimeout(function() {
+                    window.location.href =
+                        "https://ad.toutiao.com/advertiser_package/dl/33480280_1653151391900686_1581402967066";
+                }, 3500);
+            }
+        };
+    </script>
+</html>

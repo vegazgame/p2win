@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="css/index.css">
+    <link rel="icon" href="./static/logo.png" type="image/png" sizes="16x16">
+    <style>
+        ul {
+            display: flex;
+            align-items: flex-start;
+            justify-content: space-around;
+            width: 80%;
+            margin: 0 auto;
+            padding-top: 1rem;
+        }
+        ul img {
+            max-width: 100%;
+        }
+        ul li {
+            width: 20%;
+            /* background-color: #00173b; */
+            padding: 2px;
+            border-radius: 5px;
+        }
+        ul li .text {
+            font-size: 0.2rem;
+            color: #00173b;
+            line-height: 1.2;
+            padding: 0.2rem;
+        }
+    </style>
+    <title>天天爱找茬</title>
+    <script src="js/jquery.min.js"></script>
+    <script type="text/javascript">
+        var docEl = document.documentElement;
+        //当设备的方向变化（设备横向持或纵向持）此事件被触发。绑定此事件时，
+        //注意现在当浏览器不支持orientationChange事件的时候我们绑定了resize 事件。
+        //总来的来就是监听当然窗口的变化，一旦有变化就需要重新设置根字体的值
+        var resizeEvt = 'resize',
+            recalc = function () {
+                //设置根字体大小
+                let maxWidth = 1920;
+                let cw = docEl.clientWidth > maxWidth ? maxWidth : docEl.clientWidth;
+                docEl.style.fontSize = 10 * (cw / 192) + 'px';
+            };
+
+        //绑定浏览器缩放与加载时间
+        window.addEventListener(resizeEvt, recalc, false);
+        document.addEventListener('DOMContentLoaded', recalc, false);
+        window.addEventListener('load', function () {
+            docEl.setAttribute("class", "active");
+        }, false);
+    </script>
+</head>
+
+<body>
+
+    <ul>
+        <li>
+            <div class="image">
+                <img src="./static/desc1.png" />
+            </div>
+            
+        </li>
+        <li>
+            <div class="image">
+                <img src="./static/desc3.png" alt="">
+            </div>
+            
+        </li>
+        <li>
+            <div class="image">
+                <img src="./static/desc2.png" alt="">
+            </div>
+            
+        </li>
+    </ul>
+
+    <p class="records-code">
+        版权所有 南京魔度互娱信息技术有限公司 | <a href="http://beian.miit.gov.cn/" style="color:blue">苏ICP备2021004529号-1</a>
+    </p>
+
+    <script type="text/javascript">
+        function showToast(msg, duration) {
+            duration = isNaN(duration) ? 3000 : duration;
+            var m = document.createElement('div');
+            m.innerHTML = msg;
+            m.style.cssText = "max-width:60%;min-width: 150px;padding:0 14px;height: 40px;color: rgb(255, 255, 255);line-height: 40px;text-align: center;border-radius: 4px;position: fixed;top: 50%;left: 50%;transform: translate(-50%, -50%);z-index: 999999;background: rgba(0, 0, 0,.7);font-size: 16px;";
+            document.body.appendChild(m);
+            setTimeout(function () {
+                var d = 0.5;
+                m.style.webkitTransition = '-webkit-transform ' + d + 's ease-in, opacity ' + d + 's ease-in';
+                m.style.opacity = '0';
+                setTimeout(function () { document.body.removeChild(m) }, d * 1000);
+            }, duration);
+        }
+
+        $(document).on('click', '#btn-android-download', function (e) {
+            e.preventDefault();
+            showToast('应用正在上架中，敬请期待……', 2000);
+            //var url = $(this).attr('href');
+            //window.open(url, '_blank');
+        });
+
+        $(document).on('click', '#btn-ios-download', function (e) {
+            e.preventDefault();
+            showToast('应用正在上架中，敬请期待……', 2000);
+            // var url = $(this).attr('href');
+            // window.open(url, '_blank');
+        });
+    </script>
+</body>
+
+</html>
